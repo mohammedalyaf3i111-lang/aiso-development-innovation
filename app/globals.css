@@ -84,7 +84,7 @@ svg{width:1.35rem;height:1.35rem}
 [dir=rtl] .process-card i{right:auto;left:-4px}
 .contrast{max-width:none;background:var(--mist);padding-left:max(24px,calc((100vw - var(--max))/2));padding-right:max(24px,calc((100vw - var(--max))/2))}
 .split-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:50px}.split-head>div{max-width:720px}.split-head>a{color:var(--blue);font-weight:800;display:flex;align-items:center;gap:8px;font-size:.84rem}
-.image-card{background-size:cover!important;background-position:center!important;color:white!important;overflow:hidden;isolation:isolate}
+.image-card{position:relative;background-size:cover!important;background-position:center!important;color:white!important;overflow:hidden;isolation:isolate}
 .image-card:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,19,27,.28),rgba(3,19,27,.88));z-index:-1;transition:background .3s}
 .image-card:hover:before{background:linear-gradient(180deg,rgba(3,19,27,.15),rgba(3,19,27,.8))}
 .image-card>*{position:relative;z-index:1}.image-card .card-icon{background:rgba(4,24,34,.58);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(5px);color:var(--electric)}
