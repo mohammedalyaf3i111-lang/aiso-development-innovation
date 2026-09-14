@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /en/admin/
+Disallow: /ar/admin/
+Sitemap: https://aiso-development-innovation.com/sitemap.xml
