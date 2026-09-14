@@ -15,7 +15,7 @@ const sectorIcons = [Droplets, Pickaxe, Layers3, Wrench, Zap, Droplets, Wind, Ca
 const visualStories = [
   {
     key:"research",
-    image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Scientist_during_work_with_Scanning_Electron_Microscope.jpg/1280px-Scientist_during_work_with_Scanning_Electron_Microscope.jpg",
+    image:"https://images.pexels.com/photos/35155421/pexels-photo-35155421.jpeg?auto=compress&cs=tinysrgb&w=1600",
     source:"https://commons.wikimedia.org/wiki/File:Scientist_during_work_with_Scanning_Electron_Microscope.jpg",
     en:"Applied research", ar:"البحث التطبيقي",
     altEn:"Scientist using a scanning electron microscope in a materials laboratory",
@@ -23,7 +23,7 @@ const visualStories = [
   },
   {
     key:"analysis",
-    image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/X-ray_test_of_friction-stir_welded_tank_ESA373005.jpg/1280px-X-ray_test_of_friction-stir_welded_tank_ESA373005.jpg",
+    image:"https://images.pexels.com/photos/17126404/pexels-photo-17126404.jpeg?auto=compress&cs=tinysrgb&w=1600",
     source:"https://commons.wikimedia.org/wiki/File:X-ray_test_of_friction-stir_welded_tank_ESA373005.jpg",
     en:"Materials analysis", ar:"تحليل المواد والأسطح",
     altEn:"Advanced X-ray analysis of a welded titanium structure",
@@ -31,7 +31,7 @@ const visualStories = [
   },
   {
     key:"application",
-    image:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Seismologist_with_air_gun_array.jpg/960px-Seismologist_with_air_gun_array.jpg",
+    image:"https://images.pexels.com/photos/7480242/pexels-photo-7480242.jpeg?auto=compress&cs=tinysrgb&w=1600",
     source:"https://commons.wikimedia.org/wiki/File:Seismologist_with_air_gun_array.jpg",
     en:"Field application", ar:"التطبيق الهندسي الميداني",
     altEn:"Engineer working with a seismic research system in the field",
@@ -39,7 +39,7 @@ const visualStories = [
   },
   {
     key:"validation",
-    image:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/ESA_laser_testing_ESA372639.jpg/1280px-ESA_laser_testing_ESA372639.jpg",
+    image:"https://images.pexels.com/photos/35157345/pexels-photo-35157345.jpeg?auto=compress&cs=tinysrgb&w=1600",
     source:"https://commons.wikimedia.org/wiki/File:ESA_laser_testing_ESA372639.jpg",
     en:"Performance validation", ar:"اختبارات الأداء والتحقق",
     altEn:"Laser performance testing in a technical research facility",
