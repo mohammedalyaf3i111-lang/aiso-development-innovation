@@ -47,6 +47,29 @@ const visualStories = [
   }
 ];
 
+const capabilityImages = [
+  "https://images.pexels.com/photos/35155421/pexels-photo-35155421.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/7480242/pexels-photo-7480242.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/35157345/pexels-photo-35157345.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/17126404/pexels-photo-17126404.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/3621231/pexels-photo-3621231.jpeg?auto=compress&cs=tinysrgb&w=1600"
+];
+
+const sectorImages = [
+  "https://images.pexels.com/photos/257770/pexels-photo-257770.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/15138925/pexels-photo-15138925.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/12733/pexels-photo-12733.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/11377370/pexels-photo-11377370.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/4254164/pexels-photo-4254164.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/8325717/pexels-photo-8325717.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/32497161/pexels-photo-32497161.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/4315570/pexels-photo-4315570.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/10474291/pexels-photo-10474291.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/7023922/pexels-photo-7023922.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/12555015/pexels-photo-12555015.jpeg?auto=compress&cs=tinysrgb&w=1600"
+];
+
 const routeFor = (locale, slug="") => `/${locale}/${slug ? slug + "/" : ""}`;
 
 function Brand({locale}){
@@ -143,8 +166,8 @@ function Home({locale,t}){
     </section>
     <Process t={t}/>
     <VisualStories locale={locale}/>
-    <section className="section contrast"><div className="split-head"><div><span className="kicker">{locale==="ar"?"ما الذي نفعله":"WHAT WE DO"}</span><h2>{locale==="ar"?"قدرات تطوير مترابطة":"Connected development capabilities"}</h2></div><Link href={routeFor(locale,"capabilities")}>{t.explore}<Arrow/></Link></div><div className="capability-preview">{t.capabilities.slice(0,6).map((x,i)=>{const Icon=iconSet[i];return <article key={x}><Icon/><b>{x}</b><span>{String(i+1).padStart(2,"0")}</span></article>})}</div></section>
-    <section className="section"><div className="split-head"><div><span className="kicker">{locale==="ar"?"القطاعات":"SECTORS"}</span><h2>{t.sectorLine}</h2></div><Link href={routeFor(locale,"sectors")}>{locale==="ar"?"كل القطاعات":"All sectors"}<Arrow/></Link></div><div className="sector-preview">{t.sectors.slice(0,6).map((x,i)=>{const Icon=sectorIcons[i];return <article key={x}><Icon/><b>{x}</b></article>})}</div></section>
+    <section className="section contrast"><div className="split-head"><div><span className="kicker">{locale==="ar"?"ما الذي نفعله":"WHAT WE DO"}</span><h2>{locale==="ar"?"قدرات تطوير مترابطة":"Connected development capabilities"}</h2></div><Link href={routeFor(locale,"capabilities")}>{t.explore}<Arrow/></Link></div><div className="capability-preview">{t.capabilities.slice(0,6).map((x,i)=>{const Icon=iconSet[i];return <article className="image-card" style={{backgroundImage:`url("${capabilityImages[i]}")`}} key={x}><Icon/><b>{x}</b><span>{String(i+1).padStart(2,"0")}</span></article>})}</div></section>
+    <section className="section"><div className="split-head"><div><span className="kicker">{locale==="ar"?"القطاعات":"SECTORS"}</span><h2>{t.sectorLine}</h2></div><Link href={routeFor(locale,"sectors")}>{locale==="ar"?"كل القطاعات":"All sectors"}<Arrow/></Link></div><div className="sector-preview">{t.sectors.slice(0,6).map((x,i)=>{const Icon=sectorIcons[i];return <article className="image-card" style={{backgroundImage:`url("${sectorImages[i]}")`}} key={x}><Icon/><b>{x}</b></article>})}</div></section>
     <section className="section knowledge-strip"><div><LockKeyhole/><span className="kicker">{locale==="ar"?"الملكية الفنية":"TECHNICAL OWNERSHIP"}</span><h2>{t.confidential}</h2><p>{t.confidentialityText}</p></div><div className="technical-lines"/></section>
     <CTA locale={locale} t={t}/>
   </>;
@@ -154,8 +177,8 @@ function PageHero({title,lead,locale,index="01"}){
   return <section className="page-hero"><div className="page-hero-grid"/><span>{index} / AISO</span><h1>{title}</h1><p>{lead}</p><div className="page-signal"><i/><i/><i/></div></section>;
 }
 
-function Cards({items,type="capability"}){
-  return <div className={type==="sector"?"sector-cards":"cards"}>{items.map((item,i)=>{const Icon=type==="sector"?sectorIcons[i%sectorIcons.length]:iconSet[i%iconSet.length];return <article key={item}><div className="card-icon"><Icon/></div><span>{String(i+1).padStart(2,"0")}</span><h3>{item}</h3></article>})}</div>;
+function Cards({items,type="capability",images=null}){
+  return <div className={type==="sector"?"sector-cards":"cards"}>{items.map((item,i)=>{const Icon=type==="sector"?sectorIcons[i%sectorIcons.length]:iconSet[i%iconSet.length];const image=images?.[i%images.length];return <article className={image?"image-card":""} style={image?{backgroundImage:`url("${image}")`}:undefined} key={item}><div className="card-icon"><Icon/></div><span>{String(i+1).padStart(2,"0")}</span><h3>{item}</h3></article>})}</div>;
 }
 
 function Steps({items}){
@@ -225,8 +248,8 @@ function GenericPage({locale,slug,t}){
  const page=t.pages[slug]; if(!page)return <Home locale={locale} t={t}/>;
  const index=String(Object.keys(t.pages).indexOf(slug)+1).padStart(2,"0");
  let body=null;
- if(slug==="capabilities")body=<Cards items={t.capabilities}/>;
- if(slug==="sectors")body=<><p className="statement">{t.sectorLine}</p><Cards items={t.sectors} type="sector"/></>;
+ if(slug==="capabilities")body=<Cards items={t.capabilities} images={capabilityImages}/>;
+ if(slug==="sectors")body=<><p className="statement">{t.sectorLine}</p><Cards items={t.sectors} type="sector" images={sectorImages}/></>;
  if(slug==="product-development")body=<Steps items={t.productSteps}/>;
  if(slug==="formulation-development")body=<><div className="notice"><ShieldCheck/><b>{page.notice}</b></div><Cards items={t.formulation}/></>;
  if(slug==="industrial-problem-solving")body=<SmartForm locale={locale} type="problem" title={locale==="ar"?"إرسال التحدي الفني":"Submit a technical challenge"}/>;
