@@ -12,6 +12,40 @@ import { getContent, legal } from "@/src/data/content";
 
 const iconSet = [FlaskConical, Microscope, Gauge, ShieldCheck, Layers3, Wrench];
 const sectorIcons = [Droplets, Pickaxe, Layers3, Wrench, Zap, Droplets, Wind, Car, Gem, Building2, Factory];
+const visualStories = [
+  {
+    key:"research",
+    image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Scientist_during_work_with_Scanning_Electron_Microscope.jpg/1280px-Scientist_during_work_with_Scanning_Electron_Microscope.jpg",
+    source:"https://commons.wikimedia.org/wiki/File:Scientist_during_work_with_Scanning_Electron_Microscope.jpg",
+    en:"Applied research", ar:"البحث التطبيقي",
+    altEn:"Scientist using a scanning electron microscope in a materials laboratory",
+    altAr:"باحثة تستخدم مجهرًا إلكترونيًا ماسحًا في مختبر للمواد"
+  },
+  {
+    key:"analysis",
+    image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/X-ray_test_of_friction-stir_welded_tank_ESA373005.jpg/1280px-X-ray_test_of_friction-stir_welded_tank_ESA373005.jpg",
+    source:"https://commons.wikimedia.org/wiki/File:X-ray_test_of_friction-stir_welded_tank_ESA373005.jpg",
+    en:"Materials analysis", ar:"تحليل المواد والأسطح",
+    altEn:"Advanced X-ray analysis of a welded titanium structure",
+    altAr:"تحليل متقدم بالأشعة السينية لهيكل تيتانيوم ملحوم"
+  },
+  {
+    key:"application",
+    image:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Seismologist_with_air_gun_array.jpg/960px-Seismologist_with_air_gun_array.jpg",
+    source:"https://commons.wikimedia.org/wiki/File:Seismologist_with_air_gun_array.jpg",
+    en:"Field application", ar:"التطبيق الهندسي الميداني",
+    altEn:"Engineer working with a seismic research system in the field",
+    altAr:"مهندس يعمل على منظومة أبحاث زلزالية في الميدان"
+  },
+  {
+    key:"validation",
+    image:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/ESA_laser_testing_ESA372639.jpg/1280px-ESA_laser_testing_ESA372639.jpg",
+    source:"https://commons.wikimedia.org/wiki/File:ESA_laser_testing_ESA372639.jpg",
+    en:"Performance validation", ar:"اختبارات الأداء والتحقق",
+    altEn:"Laser performance testing in a technical research facility",
+    altAr:"اختبار أداء بالليزر في منشأة أبحاث تقنية"
+  }
+];
 
 const routeFor = (locale, slug="") => `/${locale}/${slug ? slug + "/" : ""}`;
 
@@ -53,12 +87,36 @@ function Footer({locale,t}){
       <div><Brand locale={locale}/><p>{locale==="ar"?"شركة تطوير تقني تبدأ من المشكلة، تطوّر الحل، وتنقل التقنية إلى شركاء صناعيين مرخصين.":"A technical development company that starts with the problem, develops the solution and transfers technology to licensed industrial partners."}</p><p className="location">{locale==="ar"?"المملكة العربية السعودية":"Saudi Arabia"}</p></div>
       {groups.map(([title,items])=><div key={title}><h3>{title}</h3>{items.map(([slug,label])=><Link key={slug} href={routeFor(locale,slug)}>{label}</Link>)}</div>)}
     </div>
+    <div className="image-credits"><span>{locale==="ar"?"اعتمادات الصور التوضيحية:":"Illustrative image credits:"}</span><a href={visualStories[0].source} target="_blank" rel="noreferrer">Gabriela B. · CC BY 4.0</a><a href={visualStories[1].source} target="_blank" rel="noreferrer">ESA–G. Porter · CC BY-SA 3.0 IGO</a><a href={visualStories[2].source} target="_blank" rel="noreferrer">Sonobuoyedod · CC BY-SA 4.0</a><a href={visualStories[3].source} target="_blank" rel="noreferrer">ESA–Anneke Le Floc'h · CC BY-SA 3.0 IGO</a></div>
     <div className="footer-bottom"><span>© {new Date().getFullYear()} {t.footer}</span><Link href={routeFor(locale==="en"?"ar":"en")}>{t.language}</Link></div>
   </footer>;
 }
 
 function CTA({locale,t}){
   return <section className="cta-band"><div><span className="kicker">{locale==="ar"?"ابدأ من التحدي":"Start with the challenge"}</span><h2>{locale==="ar"?"لنبني حلًا قابلًا للتطبيق، لا مجرد فكرة.":"Let’s build an applicable solution—not just an idea."}</h2></div><div className="actions"><Link className="button light" href={routeFor(locale,"start-project")}>{t.start}</Link><Link className="button outline-light" href={routeFor(locale,"industrial-partnerships")}>{t.partner}</Link></div></section>
+}
+
+function VisualStories({locale}){
+  return <section className="visual-stories">
+    <div className="visual-intro">
+      <span className="kicker">{locale==="ar"?"من البحث إلى التطبيق":"FROM RESEARCH TO APPLICATION"}</span>
+      <h2>{locale==="ar"?"تطوير تقني يرتبط ببيئة العمل الحقيقية.":"Technical development connected to real operating environments."}</h2>
+      <p>{locale==="ar"?"نربط التحليل والمواد والاختبارات باحتياجات التطبيق الصناعي. الصور توضيحية لمجالات العمل وليست ادعاءً بملكية المنشآت الظاهرة.":"We connect analysis, materials and testing with industrial application needs. Images illustrate fields of work and do not imply ownership of the facilities shown."}</p>
+    </div>
+    <div className="visual-grid">
+      {visualStories.map((item,i)=><figure className={i===0?"featured":""} key={item.key}>
+        <img src={item.image} alt={locale==="ar"?item.altAr:item.altEn} loading="lazy" decoding="async"/>
+        <figcaption><span>{String(i+1).padStart(2,"0")}</span><b>{locale==="ar"?item.ar:item.en}</b></figcaption>
+      </figure>)}
+    </div>
+  </section>;
+}
+
+function ContextImage({locale,slug}){
+  const map={"product-development":0,"formulation-development":1,"industrial-problem-solving":2,"product-improvement":3};
+  const item=visualStories[map[slug]];
+  if(!item)return null;
+  return <figure className="context-image"><img src={item.image} alt={locale==="ar"?item.altAr:item.altEn} loading="lazy" decoding="async"/><figcaption><b>{locale==="ar"?item.ar:item.en}</b><span>{locale==="ar"?"صورة توضيحية لمجال العمل":"Illustrative field image"}</span></figcaption></figure>;
 }
 
 function Process({t}){
@@ -84,6 +142,7 @@ function Home({locale,t}){
       <div className="hero-proof"><span>{locale==="ar"?"نبدأ من":"WE START WITH"}</span><strong>{locale==="ar"?"المشكلة الصناعية":"THE INDUSTRIAL PROBLEM"}</strong></div>
     </section>
     <Process t={t}/>
+    <VisualStories locale={locale}/>
     <section className="section contrast"><div className="split-head"><div><span className="kicker">{locale==="ar"?"ما الذي نفعله":"WHAT WE DO"}</span><h2>{locale==="ar"?"قدرات تطوير مترابطة":"Connected development capabilities"}</h2></div><Link href={routeFor(locale,"capabilities")}>{t.explore}<Arrow/></Link></div><div className="capability-preview">{t.capabilities.slice(0,6).map((x,i)=>{const Icon=iconSet[i];return <article key={x}><Icon/><b>{x}</b><span>{String(i+1).padStart(2,"0")}</span></article>})}</div></section>
     <section className="section"><div className="split-head"><div><span className="kicker">{locale==="ar"?"القطاعات":"SECTORS"}</span><h2>{t.sectorLine}</h2></div><Link href={routeFor(locale,"sectors")}>{locale==="ar"?"كل القطاعات":"All sectors"}<Arrow/></Link></div><div className="sector-preview">{t.sectors.slice(0,6).map((x,i)=>{const Icon=sectorIcons[i];return <article key={x}><Icon/><b>{x}</b></article>})}</div></section>
     <section className="section knowledge-strip"><div><LockKeyhole/><span className="kicker">{locale==="ar"?"الملكية الفنية":"TECHNICAL OWNERSHIP"}</span><h2>{t.confidential}</h2><p>{t.confidentialityText}</p></div><div className="technical-lines"/></section>
@@ -181,7 +240,7 @@ function GenericPage({locale,slug,t}){
  if(slug==="contact")body=<ContactPage locale={locale} t={t}/>;
  if(slug==="start-project")body=<ProjectWizard locale={locale} t={t}/>;
  if(slug==="admin")body=<Admin locale={locale}/>;
- return <><PageHero title={page.title} lead={page.lead} locale={locale} index={index}/><section className={slug==="admin"?"section wide-section":"section"}>{body}</section>{!["admin","contact","start-project","industrial-problem-solving"].includes(slug)&&<CTA locale={locale} t={t}/>}</>;
+ return <><PageHero title={page.title} lead={page.lead} locale={locale} index={index}/><ContextImage locale={locale} slug={slug}/><section className={slug==="admin"?"section wide-section":"section"}>{body}</section>{!["admin","contact","start-project","industrial-problem-solving"].includes(slug)&&<CTA locale={locale} t={t}/>}</>;
 }
 
 export default function SiteShell({locale,slug}){
