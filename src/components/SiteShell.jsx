@@ -110,7 +110,6 @@ function Footer({locale,t}){
       <div><Brand locale={locale}/><p>{locale==="ar"?"شركة تطوير تقني تبدأ من المشكلة، تطوّر الحل، وتنقل التقنية إلى شركاء صناعيين مرخصين.":"A technical development company that starts with the problem, develops the solution and transfers technology to licensed industrial partners."}</p><p className="location">{locale==="ar"?"المملكة العربية السعودية":"Saudi Arabia"}</p></div>
       {groups.map(([title,items])=><div key={title}><h3>{title}</h3>{items.map(([slug,label])=><Link key={slug} href={routeFor(locale,slug)}>{label}</Link>)}</div>)}
     </div>
-    <div className="image-credits"><span>{locale==="ar"?"اعتمادات الصور التوضيحية:":"Illustrative image credits:"}</span><a href={visualStories[0].source} target="_blank" rel="noreferrer">Gabriela B. · CC BY 4.0</a><a href={visualStories[1].source} target="_blank" rel="noreferrer">ESA–G. Porter · CC BY-SA 3.0 IGO</a><a href={visualStories[2].source} target="_blank" rel="noreferrer">Sonobuoyedod · CC BY-SA 4.0</a><a href={visualStories[3].source} target="_blank" rel="noreferrer">ESA–Anneke Le Floc'h · CC BY-SA 3.0 IGO</a></div>
     <div className="footer-bottom"><span>© {new Date().getFullYear()} {t.footer}</span><Link href={routeFor(locale==="en"?"ar":"en")}>{t.language}</Link></div>
   </footer>;
 }
@@ -142,6 +141,24 @@ function ContextImage({locale,slug}){
   return <figure className="context-image"><img src={item.image} alt={locale==="ar"?item.altAr:item.altEn} loading="lazy" decoding="async"/><figcaption><b>{locale==="ar"?item.ar:item.en}</b><span>{locale==="ar"?"صورة توضيحية لمجال العمل":"Illustrative field image"}</span></figcaption></figure>;
 }
 
+function WhoWeAre({locale,t}){
+  const Arrow=locale==="ar"?ArrowLeft:ArrowRight;
+  return <section className="who-we-are">
+    <div className="who-index"><span>{locale==="ar"?"من نحن":"WHO WE ARE"}</span><b>AISO</b></div>
+    <div className="who-copy">
+      <span className="kicker">{locale==="ar"?"شركة تطوير تقني":"A TECHNICAL DEVELOPMENT COMPANY"}</span>
+      <h2>{locale==="ar"?"نطوّر المعرفة حتى تصبح منتجًا قابلًا للتطبيق التجاري.":"We develop knowledge until it becomes a commercially applicable product."}</h2>
+      <p>{locale==="ar"?"أيزو للتطوير والابتكار شركة سعودية التوجه تركز على تطوير الحلول والمنتجات التقنية المتخصصة. نبدأ من التحدي الصناعي، ونحوّله عبر البحث التطبيقي وتطوير التركيبات والتحقق إلى حل قابل للتوسع، ثم ننقل التقنية إلى شركاء صناعيين مرخصين للتصنيع والتسويق.":"AISO Development & Innovation is a Saudi-focused technical development company creating specialised solutions and products. We begin with the industrial challenge, translate it through applied research, formulation development and validation into a scalable solution, then transfer the technology to licensed industrial partners for manufacturing and commercialisation."}</p>
+      <div className="who-distinctions">
+        <span>{locale==="ar"?"ليست مصنعًا تقليديًا":"Not a conventional factory"}</span>
+        <span>{locale==="ar"?"ليست متجر مواد كيميائية":"Not a chemical retailer"}</span>
+        <span>{locale==="ar"?"تطوير · تحقق · نقل تقنية":"Develop · Validate · Transfer"}</span>
+      </div>
+      <Link href={routeFor(locale,"about")}>{locale==="ar"?"تعرف على أيزو":"Discover AISO"}<Arrow/></Link>
+    </div>
+  </section>;
+}
+
 function Process({t}){
   return <section className="section process-section"><div className="section-heading"><span>01 — 06</span><h2>{t.processTitle}</h2><p>{t.processIntro}</p></div><div className="process-grid">{t.process.map((item,i)=><div className="process-card" key={item}><b>{String(i+1).padStart(2,"0")}</b><span>{item}</span>{i<t.process.length-1&&<i/>}</div>)}</div></section>;
 }
@@ -166,6 +183,7 @@ function Home({locale,t}){
     </section>
     <Process t={t}/>
     <VisualStories locale={locale}/>
+    <WhoWeAre locale={locale} t={t}/>
     <section className="section contrast"><div className="split-head"><div><span className="kicker">{locale==="ar"?"ما الذي نفعله":"WHAT WE DO"}</span><h2>{locale==="ar"?"قدرات تطوير مترابطة":"Connected development capabilities"}</h2></div><Link href={routeFor(locale,"capabilities")}>{t.explore}<Arrow/></Link></div><div className="capability-preview">{t.capabilities.slice(0,6).map((x,i)=>{const Icon=iconSet[i];return <article className="image-card" style={{backgroundImage:`url("${capabilityImages[i]}")`}} key={x}><Icon/><b>{x}</b><span>{String(i+1).padStart(2,"0")}</span></article>})}</div></section>
     <section className="section"><div className="split-head"><div><span className="kicker">{locale==="ar"?"القطاعات":"SECTORS"}</span><h2>{t.sectorLine}</h2></div><Link href={routeFor(locale,"sectors")}>{locale==="ar"?"كل القطاعات":"All sectors"}<Arrow/></Link></div><div className="sector-preview">{t.sectors.slice(0,6).map((x,i)=>{const Icon=sectorIcons[i];return <article className="image-card" style={{backgroundImage:`url("${sectorImages[i]}")`}} key={x}><Icon/><b>{x}</b></article>})}</div></section>
     <section className="section knowledge-strip"><div><LockKeyhole/><span className="kicker">{locale==="ar"?"الملكية الفنية":"TECHNICAL OWNERSHIP"}</span><h2>{t.confidential}</h2><p>{t.confidentialityText}</p></div><div className="technical-lines"/></section>
